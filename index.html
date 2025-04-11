@@ -1,19 +1,581 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagdamba Hotel | Authentic Maharashtrian Non-Veg Cuisine | Kashti</title>
+    <meta name="description" content="Experience authentic Maharashtrian non-veg cuisine at Jagdamba Hotel, Kashti. Famous for our Rashinchi Special Mutton Thali - a true taste of rural Maharashtra.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --primary-light: #ff6659;
+            --primary-dark: #9a0007;
+            --secondary: #fff8e1;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--secondary);
+            scroll-behavior: smooth;
+        }
+        
+        .marathi {
+            font-family: 'Baloo Bhaijaan 2', cursive;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
+        }
+        
+        .dish-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dish-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .review-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo and Navigation -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#home" class="flex items-center">
+                    <img src="https://via.placeholder.com/150x50?text=Jagdamba+Hotel" alt="Jagdamba Hotel Logo" class="h-12">
+                </a>
+            </div>
+            
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#home" class="nav-link text-gray-800 hover:text-red-600 font-medium">Home</a></li>
+                    <li><a href="#about" class="nav-link text-gray-800 hover:text-red-600 font-medium">About</a></li>
+                    <li><a href="#menu" class="nav-link text-gray-800 hover:text-red-600 font-medium">Menu</a></li>
+                    <li><a href="#reviews" class="nav-link text-gray-800 hover:text-red-600 font-medium">Reviews</a></li>
+                    <li><a href="#contact" class="nav-link text-gray-800 hover:text-red-600 font-medium">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="md:hidden text-gray-800" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white w-full py-4 px-4 shadow-lg" id="mobile-menu">
+            <ul class="space-y-4">
+                <li><a href="#home" class="block text-gray-800 hover:text-red-600 font-medium">Home</a></li>
+                <li><a href="#about" class="block text-gray-800 hover:text-red-600 font-medium">About</a></li>
+                <li><a href="#menu" class="block text-gray-800 hover:text-red-600 font-medium">Menu</a></li>
+                <li><a href="#reviews" class="block text-gray-800 hover:text-red-600 font-medium">Reviews</a></li>
+                <li><a href="#contact" class="block text-gray-800 hover:text-red-600 font-medium">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section flex items-center justify-center pt-20">
+        <div class="container mx-auto px-4 text-center text-white">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 marathi">
+                राशीनची स्पेशल मटन थाळी
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 marathi">अस्सल गावरान चव!</p>
+            <p class="text-lg mb-10 max-w-2xl mx-auto">
+                Experience the authentic taste of rural Maharashtra with our famous Rashinchi Special Mutton Thali
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#menu" class="btn-primary text-white px-8 py-3 rounded-full font-semibold inline-block">
+                    View Our Menu
+                </a>
+                <a href="#contact" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold inline-block hover:bg-white hover:text-gray-800 transition">
+                    Book a Table
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                        <span class="marathi">जगदंबा हॉटेल बद्दल</span>
+                        <span class="block text-red-600">About Jagdamba Hotel</span>
+                    </h2>
+                    <p class="text-gray-700 mb-4">
+                        Established in 1985, Jagdamba Hotel has been serving authentic Maharashtrian non-vegetarian cuisine to food lovers from Kashti and beyond.
+                    </p>
+                    <p class="text-gray-700 mb-6 marathi">
+                        आमच्या ३५ वर्षांच्या प्रवासात, आम्ही महाराष्ट्राच्या ग्रामीण भागातील अस्सल चवीचे रक्षण केले आहे. राशीनची स्पेशल मटन थाळी ही आमची शान आहे.
+                    </p>
+                    <p class="text-gray-700">
+                        Our secret recipes passed down through generations bring you the true flavors of rural Maharashtra, cooked with love and traditional techniques.
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative rounded-xl overflow-hidden shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1398&q=80" alt="Jagdamba Hotel interior" class="w-full h-auto">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                            <h3 class="text-white text-xl font-semibold marathi">आमची वाडी, आमची स्वयंपाकघर</h3>
+                            <p class="text-white">Our home, our kitchen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+                <span class="marathi">आमचे विशेष मेनू</span>
+                <span class="block text-red-600">Our Special Menu</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mutton Thali -->
+                <div class="dish-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Rashinchi Special Mutton Thali" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Best Seller
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 marathi">राशीनची स्पेशल मटन थाळी</h3>
+                        <p class="text-gray-600 mb-4">Rashinchi Special Mutton Thali</p>
+                        <p class="text-gray-700 mb-4">
+                            A complete meal featuring tender mutton curry, bhakri, rice, dal, solkadhi, and traditional accompaniments.
+                        </p>
+                        <p class="text-red-600 font-bold text-lg">₹350</p>
+                    </div>
+                </div>
+                
+                <!-- Chicken Sukka -->
+                <div class="dish-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518492104633-130d0cc84637?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80)">
+                        <img src="https://images.unsplash.com/photo-1518492104633-130d0cc84637?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="Chicken Sukka" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 marathi">कोकणी चिकन सुक्का</h3>
+                        <p class="text-gray-600 mb-4">Konkani Chicken Sukka</p>
+                        <p class="text-gray-700 mb-4">
+                            Spicy dry chicken preparation with traditional Konkani masalas, served with jowar bhakri.
+                        </p>
+                        <p class="text-red-600 font-bold text-lg">₹280</p>
+                    </div>
+                </div>
+                
+                <!-- Pandhra Rassa -->
+                <div class="dish-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Pandhra Rassa" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 marathi">पांढरा रस्सा</h3>
+                        <p class="text-gray-600 mb-4">Pandhra Rassa</p>
+                        <p class="text-gray-700 mb-4">
+                            White mutton curry with coconut milk and special spices, a Kolhapuri delicacy.
+                        </p>
+                        <p class="text-red-600 font-bold text-lg">₹320</p>
+                    </div>
+                </div>
+                
+                <!-- Tambda Rassa -->
+                <div class="dish-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Tambda Rassa" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 marathi">तांबडा रस्सा</h3>
+                        <p class="text-gray-600 mb-4">Tambda Rassa</p>
+                        <p class="text-gray-700 mb-4">
+                            Fiery red mutton curry, Kolhapur style, for those who dare to challenge their spice tolerance.
+                        </p>
+                        <p class="text-red-600 font-bold text-lg">₹320</p>
+                    </div>
+                </div>
+                
+                <!-- Kombdi Vade -->
+                <div class="dish-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Kombdi Vade" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 marathi">कोंबडी वडे</h3>
+                        <p class="text-gray-600 mb-4">Kombdi Vade</p>
+                        <p class="text-gray-700 mb-4">
+                            Chicken curry served with deep-fried bread (vade), a Malvani specialty.
+                        </p>
+                        <p class="text-red-600 font-bold text-lg">₹250</p>
+                    </div>
+                </div>
+                
+                <!-- Mutton Biryani -->
+                <div class="dish-card bg-white rounded-xl overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1488&q=80" alt="Mutton Biryani" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 marathi">मटन बिर्याणी</h3>
+                        <p class="text-gray-600 mb-4">Mutton Biryani</p>
+                        <p class="text-gray-700 mb-4">
+                            Fragrant basmati rice cooked with tender mutton pieces and special spices, served with raita.
+                        </p>
+                        <p class="text-red-600 font-bold text-lg">₹300</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="btn-primary text-white px-8 py-3 rounded-full font-semibold inline-block">
+                    Book a Table Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+                <span class="marathi">आमच्या ग्राहकांचे अभिप्राय</span>
+                <span class="block text-red-600">Customer Reviews</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="review-card p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                            <span class="text-red-600 text-xl font-bold">A</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Amit Patil</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 marathi">
+                        जगदंबा हॉटेलची मटन थाळी खाल्ल्याशिवाय कास्टीला आलो असं म्हणता येणार नाही! अस्सल गावरान चव. खूप छान!
+                    </p>
+                    <p class="text-gray-500 text-sm">Visited: 15 June 2023</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                            <span class="text-red-600 text-xl font-bold">P</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Priya Deshmukh</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4 marathi">
+                        राशीनची स्पेशल मटन थाळी खरोखरच विशेष आहे. मटन खूप मऊ आणि चवदार. सर्व्हिस देखील खूप छान.
+                    </p>
+                    <p class="text-gray-500 text-sm">Visited: 2 May 2023</p>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                            <span class="text-red-600 text-xl font-bold">R</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Rahul Jadhav</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Best non-veg food in Kashti! The Tambda Rassa is a must-try for spice lovers. Authentic Maharashtrian flavors at reasonable prices.
+                    </p>
+                    <p class="text-gray-500 text-sm">Visited: 22 April 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+                <span class="marathi">आमच्याशी संपर्क साधा</span>
+                <span class="block text-red-600">Contact Us</span>
+            </h2>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Book a Table</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600">
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600">
+                            </div>
+                            <div class="mb-4">
+                                <label for="date" class="block text-gray-700 mb-2">Date</label>
+                                <input type="date" id="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600">
+                            </div>
+                            <div class="mb-4">
+                                <label for="time" class="block text-gray-700 mb-2">Time</label>
+                                <input type="time" id="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600">
+                            </div>
+                            <div class="mb-4">
+                                <label for="guests" class="block text-gray-700 mb-2">Number of Guests</label>
+                                <select id="guests" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600">
+                                    <option value="1">1 Person</option>
+                                    <option value="2">2 People</option>
+                                    <option value="3">3 People</option>
+                                    <option value="4">4 People</option>
+                                    <option value="5">5 People</option>
+                                    <option value="6">6+ People</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold w-full">
+                                Book Now
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Our Location</h3>
+                        
+                        <div class="mb-8">
+                            <div class="flex items-start mb-4">
+                                <div class="text-red-600 mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Address</h4>
+                                    <p class="text-gray-700 marathi">जगदंबा हॉटेल, मुख्य रस्ता, कास्टी, जि. अहमदनगर, महाराष्ट्र ४१४६०४</p>
+                                    <p class="text-gray-700">Jagdamba Hotel, Main Road, Kashti, Ahmednagar, Maharashtra 414604</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start mb-4">
+                                <div class="text-red-600 mr-4 mt-1">
+                                    <i class="fas fa-phone-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Phone</h4>
+                                    <p class="text-gray-700">+91 9876543210</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start mb-4">
+                                <div class="text-red-600 mr-4 mt-1">
+                                    <i class="fas fa-clock text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Opening Hours</h4>
+                                    <p class="text-gray-700">Monday to Sunday: 11:00 AM - 10:30 PM</p>
+                                    <p class="text-gray-700 marathi">सोमवार ते रविवार: सकाळी ११ ते रात्री १०:३०</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.123456789012!2d74.12345678901234!3d19.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA3JzI0LjQiTiA3NMKwMDcnMjQuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/150x50?text=Jagdamba+Hotel" alt="Jagdamba Hotel Logo" class="h-10">
+                    </div>
+                    <p class="text-gray-400 max-w-xs">
+                        Serving authentic Maharashtrian non-vegetarian cuisine since 1985. Taste the real flavors of rural Maharashtra.
+                    </p>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-white transition">Menu</a></li>
+                        <li><a href="#reviews" class="text-gray-400 hover:text-white transition">Reviews</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-red-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-red-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-red-600 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="font-medium mb-2">Subscribe to Newsletter</h4>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full">
+                            <button class="bg-red-600 text-white px-4 py-2 rounded-r-lg hover:bg-red-700 transition">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Jagdamba Hotel, Kashti. All Rights Reserved.</p>
+                <p class="mt-2 text-sm marathi">डिझाइन केले: वेब डेव्हलपमेंट टीम</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-red-600 text-white rounded-full shadow-lg flex items-center justify-center hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=me-sudarshan/jagdamba" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
 </html>
